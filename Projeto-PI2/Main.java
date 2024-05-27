@@ -15,6 +15,8 @@ public class Main {
     public static boolean[] desafiosAtivados = new boolean[7]; // Variável para controlar se os desafios serão ativados
     public static double saldo = 0;
     public static int charadaNumero;
+	public static String respostaCorreta = "";
+	public static String charada = "";
     static String dourado = "\u001B[33m";
     static String reset = "\u001B[0m";
     static String vermelho = "\u001B[31m";
@@ -280,57 +282,59 @@ public class Main {
     }
 
     public static void desf3() {
-        if (vitorias == 6 && !desafiosAtivados[2]) {
-            charadaNumero = rand.nextInt(4) + 1; // Gera um número aleatório entre 1 e 4
-            String respostaCorreta = "";
-            String charada = "";
+		if (vitorias == 6 && !desafiosAtivados[2]) {
+			charadaNumero = rand.nextInt(4) + 1; // Gera um número aleatório entre 1 e 4
+			String respostaCorreta = "";
+			String charada = "";
 
-            switch (charadaNumero) {
-                case 1:
-                    charada = "Corre bastante e não possui pernas.";
-                    respostaCorreta = verde + "Rio" + reset;
-                    break;
-                case 2:
-                    charada = "Sou grande quando nova, e vou encolhendo quando velha.";
-                    respostaCorreta = verde + "Vela" + reset;
-                    break;
-                case 3:
-                    charada = "O que se quebra quando é dito?";
-                    respostaCorreta = verde + "Silêncio" + reset;
-                    break;
-                case 4:
-                    charada = "Quanto mais se tira, maior fica.";
-                    respostaCorreta = verde + "Buraco" + reset;
-                    break;
-            }
+			switch (charadaNumero) {
+			case 1:
+				charada = "Corre bastante e não possui pernas.";
+				respostaCorreta = "Rio";
+				break;
+			case 2:
+				charada = "Sou grande quando nova, e vou encolhendo quando velha.";
+				respostaCorreta = "Vela";
+				break;
+			case 3:
+				charada = "O que se quebra quando é dito?";
+				respostaCorreta = "Silêncio";
+				break;
+			case 4:
+				charada = "Quanto mais se tira, maior fica.";
+				respostaCorreta = "Buraco";
+				break;
+			}
 
-            System.out.println(laranja + "Bem-vindo ao jogo de Charadas!" + reset);
-            System.out.println("Você tem 5 chances para adivinhar a resposta.");
-            System.out.println("Charada: " + charada);
+			System.out.println("Bem-vindo ao jogo de Charadas!");
+			System.out.println("Você tem 5 chances para adivinhar a resposta.");
+			System.out.println("Charada: " + charada);
 
-            boolean acertou = false;
-            for (int tentativa = 1; tentativa <= 5; tentativa++) {
-                System.out.print("Tentativa " + tentativa + ": ");
-                String resposta = ler.next().trim();
+			boolean acertou = false;
+			for (int tentativa = 1; tentativa <= 5; tentativa++) {
+				System.out.print("Tentativa " + tentativa + ": ");
+				String resposta = ler.next().trim();
 
-                if (resposta.equalsIgnoreCase(respostaCorreta)) {
-                    saldo *= 3;
-                    System.out.println(verde + "Parabéns, você acertou!" + reset);
-                    acertou = true;
-                    break;
-                } else {
-                    System.out.println(vermelho + "Resposta errada. Tente novamente." + reset);
-                }
-            }
+				if (resposta.equalsIgnoreCase(respostaCorreta)) {
+					saldo *= 3;
+					System.out.println("Parabéns, você acertou!");
+					acertou = true;
+					break;
+				} else {
+					System.out.println("Resposta errada. Tente novamente.");
+				}
+			}
 
-            if (!acertou) {
-                saldo -= saldo / 3;
-                System.out.println(vermelho + "Você perdeu! A resposta correta era: " + respostaCorreta + reset);
-            }
-            System.out.println("\u001B[0mSaldo atual: R$ " + saldo);
-        }
-        desafiosAtivados[2] = true;
-    }
+			if (!acertou) {
+				saldo -= saldo / 3;
+				System.out.println("Você perdeu! A resposta correta era: " + respostaCorreta);
+			}
+			System.out.println("\u001B[0mSaldo atual: R$ " + saldo);
+		}
+		desafiosAtivados[2] = true;
+	}
+
+
 
     public static void quizEgito(Scanner scanner) {
         System.out.println(azul + "Tema: Egito" + reset);
